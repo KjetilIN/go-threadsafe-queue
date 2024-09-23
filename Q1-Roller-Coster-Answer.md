@@ -10,3 +10,32 @@ A number of passengers (1:n) wish to repeatedly take rides with a Roller Coaster
 ```text
 
 ```
+monitor RollerCoaster:
+    int waitingPassengers = 0         
+    int passengersOnBoard = 0    
+    int rollerCoaster = 0     
+    int capacity = 0                               
+
+    condition carAvailable  
+    condition carLeft            
+    condition allPassengersBoarded      
+    condition rideFinished              
+
+    procedure carArrives():
+        while (rollerCoaster = 0): wait(carAvailable)
+        while (passengersOnBoard = capacity): wait(allPassengersBoarded)
+        rollerCoaster = rollerCoaster - 1
+        signal_all(carLeft) 
+
+    procedure passengerArrives():
+        waitingPassengers += 1
+
+        wait(carAvailable)
+
+        passengersOnBoard += 1
+        waitingPassengers -= 1
+
+        if passengersOnBoard == capacity:
+            signal(allPassengersBoarded)
+
+        wait(rideFinished)
