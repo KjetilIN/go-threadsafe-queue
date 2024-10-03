@@ -58,7 +58,7 @@ func main() {
 	max_number_to_square := 5
 
 	// Print the number
-	fmt.Println("Max number to squared and added to the queue: ", max_number_to_square)
+	fmt.Println("Max number to be squared: ", max_number_to_square)
 
 	// Starting a timer to check the performance
 	start := time.Now()
@@ -103,13 +103,13 @@ func main() {
 	// Will block the main thread until both values are read from the channel
 	res := <-output + <-output
 
-  // Closing the output channel
-  close(output)
+	// Closing the output channel
+	close(output)
 
 	// Print the result of both reducers summed
 	fmt.Println("Result of reducers:", res)
 
-  // Just as Oblig 1, check if we got the correct sum
+	// Just as Oblig 1, check if we got the correct sum
 	fmt.Println("Total - Res:", total-res)
 
 	// Print the time it took
