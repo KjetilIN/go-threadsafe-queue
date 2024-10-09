@@ -6,10 +6,12 @@ import (
 	"time"
 )
 
+// Mapper interface 
 type Mapper interface {
 	IsEven(int) bool
 }
 
+// Reducer interface
 type Reducer interface {
 	Reduce(int, int) int
 }
